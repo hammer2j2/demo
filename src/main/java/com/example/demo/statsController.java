@@ -10,13 +10,16 @@ public class StatsController {
     @Autowired
     private final StatsService statsService; 
 
+
     public StatsController(StatsService statsService){
         this.statsService = statsService;
     }
 
     @GetMapping("/stats")
     public String index() {
-        
-        return "This will be a list from S3 or DynamoDB";
+        // return "This will be a list from S3 or DynamoDB";
+        // TODO: get s3 bucketname from query param, bucketName
+        final String bucketName = "slamgarden.com";
+        return this.statsService.getS3Bucket(bucketName);
     }
 }
